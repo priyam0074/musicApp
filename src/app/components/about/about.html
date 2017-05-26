@@ -1,0 +1,98 @@
+<div ui-view='header'></div>
+<div ng-controller="aboutCtrl as about" class="controller-background">
+	<h1 ng-bind="about.aboutText"></h1>	
+	<div class="container">
+		<div class="row row-dimensions" >
+			<div class="col-md-10">
+			<h1 ng-bind="about.welcomeText"></h1>
+			</div>
+			
+			</div>
+			<div class="row ">
+				<div class="col-md-10 pull-left searchboxer ">
+					<div class ="row">
+						<div class ="col-md-12 text-center music-box-font">Track Genres </div>
+					</div>
+					
+				<div class="horizontal-space"></div>
+				<div class ="row">
+					<div class="col-md-12 font-texture">
+					<b>	LIST OF GENRES</b>
+					</div>
+					</div>
+				<div class ="row">
+					<div class="col-md-12 scrollbar list-groups">
+				
+					
+				<div class="row  list-items" ng-repeat="list in about.listOfGenres.slice(((about.currentPage-1)*about.itemsPerPage), ((about.currentPage)*about.itemsPerPage)) track by $index">
+					<div class= "col-md-10">
+                                 <span ng-hide="about.editingData[list.id]" ng-click="about.modify(list)" 
+								 class="glyphicon glyphicon-edit text-primary"></span>
+						<span ng-show="about.editingData[list.id]" ng-click="about.update(list)"
+						class="glyphicon glyphicon-check text-success" ></span>
+						 <span class="padddingRight"></span>
+                       <span ng-hide="about.editingData[list.id]"> <b> {{list.name}}</b> </span>
+					   <span ng-show="about.editingData[list.id]">  
+						   <input type="text" ng-model="list.name" class="inputbox-width"/>
+					   </span> 
+							 
+							 
+						</div>
+					
+					</div>
+				</div>
+					
+				</div>
+				<div class="horizontal-space"></div>
+				<div class="row">
+				<div class="col-md-12 shift-downwards ">
+				<div>
+						
+							<button class="btn btn-primary"
+							 data-toggle="modal" data-target="#myModal"  ng-disabled = "about.disableButton">Add Genre</button>
+							</div>
+				</div>
+				</div>
+				<div class="horizontal-space"></div>
+				<div class="row">
+					<div class="col-md-12 pagination-dimensions">
+						<pagination total-items="about.totalItems" ng-model="about.currentPage"
+						 ng-change="about.pageChanged()" class="pagination-sm" items-per-page="about.itemsPerPage"></pagination>
+					</div>
+					</div>
+				</div>
+				
+
+					
+	</div>
+
+	<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content ">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">ADD NEW GENRE</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+          <label for="inputGenre" class="col-sm-2 control-label"><b>GENRE</b></label>
+               <div class="col-sm-6">
+                <input type="text" class="form-control"  ng-model="about.newGENRE" placeholder="genre">
+         </div>
+			  </div>
+				<div class="horizontal-space"></div>
+			  
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="about.addGenre()" data-dismiss="modal">add</button>
+          <button type="button" class="btn btn-failure" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+	</div>

@@ -1,0 +1,106 @@
+.controller-background {
+    background-image: url(http://media.istockphoto.com/photos/headphones-and-coffee-cup-on-wooden-table-picture-id627955908);
+}
+.searchboxer {
+    height:75%;
+    /*border:1px solid blue;*/
+    position:relative;
+    /*background-color: aliceblue;*/
+    overflow-x:hidden;
+}
+.music-box-font{
+    font-family:Arial, Helvetica, sans-serif;
+    font-style: black;
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-top: 1%;
+}
+.font-texture {
+   font-size: x-large;
+   font-family: serif;
+}
+.searchbox-input {
+  display:inline-block;
+  border: 1px solid #d5d6d9;
+  color: #696E7C;
+  height: 34px;
+  width: 70%;
+   border-left: 0;
+   border-right:0;
+  background: transparent;
+
+}
+.searchbox-input:focus {
+    outline: none;
+}
+.removeIcon {
+    position:absolute;
+    display: inline-block;
+    border: 1px solid #d4d5d9;
+    border-left: none;
+    border-radius: 0px 4px 4px 0px;
+    height: 28px;
+    width: 40px;
+    text-align: center;
+    padding: 7px 6px 25px 0px;
+
+    
+}
+.searchIcon {
+    display: inline-block;
+    border: 1px solid #d4d5d9;
+    border-right: none;
+    border-radius: 4px 0px 0px 4px;
+    height: 28px;
+    width: 40px;
+    text-align: center;
+    padding: 7px 6px 25px 0px;
+    
+ }
+ .horizontal-space {
+     margin-top: 10px; 
+ }
+ .scrollbar {
+     position:absolute;
+     overflow-y: auto;
+     height:42%;
+     overflow-x:hidden;
+     left:0;
+     right:0;
+ }
+ .shift-downwards{
+    position: absolute;
+    left: 37%;
+    margin-top: 9px;
+    max-height: 10%
+ }
+ .pagination-dimensions{
+    left: 31%;
+ }
+ .list-groups {
+    padding-left: 40px;
+    margin-bottom: 20px;
+    margin-left: 3px
+ }
+ .list-items {
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    margin-left: 9px;
+    background-color: transparent;
+    border: 1px solid #ddd;
+ }
+ .list-items:hover {
+     background-color: #ddd;
+ }
+ .inputbox-width{
+     width:24%
+ }
+ .modal-content-height{
+     height:44%
+ }
+ .modal-height{
+     height:50%
+ }
+ .padddingRight {
+    padding-left: 5%;
+ }

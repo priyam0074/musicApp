@@ -1,0 +1,132 @@
+<div ui-view='header'></div>
+<div ng-controller="homeCtrl as home" class="controller-background">
+	
+	<div class="container">
+		<div class="row row-dimensions" >
+			<div class="col-md-10">
+			<h1 ng-bind="home.welcomeText"></h1>
+			</div>
+			
+			</div>
+			<div class="row ">
+				<div class="col-md-10 pull-left searchboxer ">
+					<div class ="row">
+						<div class ="col-md-12 text-center music-box-font">MusicBox </div>
+					</div>
+					<div class="row">
+						<div class="col-md-12">
+						
+								<a class="searchIcon">
+            <span class="glyphicon glyphicon-search" aria-hidden="true" ng-click="home.search()">
+            </span></a><input type="text" placeholder="search by track" ng-model ="home.searchByTrack" ng-focus="home.isSearchFocused=true" ng-blur="home.isSearchFocused=false"
+						class="searchbox-input"/><a class="removeIcon" ng-click="home.clearSearch()" >
+          <span ng-click="home.clearSearch()" style ="pointer-events: auto; cursor: pointer;"
+					ng-show="home.searchByTrack.length > 0" class="glyphicon glyphicon-remove-sign"></span>
+					<!--<span ng-if="home.isSearchFocused == false || home.isSearchFocused == undefined || home.isSearchFocused == null"></span>-->
+        </a>
+            
+				</div>
+				</div>
+				<div class="horizontal-space"></div>
+				<div class ="row">
+					<div class="col-md-12 font-texture">
+						LIST OF TRACKS
+
+					</div>
+					</div>
+					<div class="horizontal-space"></div>
+				<div class ="row">
+					<div class="col-md-12 scrollbar list-groups">
+				
+					
+				<div class="row  list-items" ng-repeat="list in home.musicGenreView.slice(((home.currentPage-1)*home.itemsPerPage), ((home.currentPage)*home.itemsPerPage)) | filter : home.searchByTrack track by $index">
+					<div class= "col-md-6">
+                                 <span ng-hide="home.editingData[list.id]" ng-click="home.modify(list)" 
+								 class="glyphicon glyphicon-edit text-primary"></span>
+						<span ng-show="home.editingData[list.id]" ng-click="home.update(list)"
+						class="glyphicon glyphicon-check text-success" ></span>
+						 
+                       <span ng-hide="home.editingData[list.id]"> <b> {{list.title}}</b> </span>
+					   <span ng-show="home.editingData[list.id]">  
+						   <input type="text" ng-model="list.title" class="inputbox-width"/>
+					   </span> [ 
+						 <span ng-repeat ="listDetails in  list.genres | combineGenre track by $index ">
+							<span ng-hide="home.editingData[list.id]" > <small>{{listDetails}} </small></span>
+							<span ng-show="home.editingData[list.id]" >
+								<input type="text" ng-model="listDetails" class="inputbox-width" /> 
+							</span>
+							 </span>
+							 ]
+						</div>
+						<div class = " col-md-offset-1 col-md-4">
+							<star-rating ng-hide="home.editingData[list.id]" ng-model="list.rating" ></star-rating>
+							<star-rating ng-show="home.editingData[list.id]" ng-model="list.rating" ></star-rating>
+							</div>
+					</div>
+				</div>
+					
+				</div>
+				<div class="horizontal-space"></div>
+				<div class="row">
+				<div class="col-md-12 shift-downwards ">
+				<div>
+						
+							<button class="btn btn-primary"
+							 data-toggle="modal" data-target="#myModal" ng-disabled = "home.disableButton">Add New Track</button>
+							</div>
+				</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 pagination-dimensions">
+						<pagination total-items="home.totalItems" ng-model="home.currentPage"
+						 ng-change="home.pageChanged()" class="pagination-sm" items-per-page="home.itemsPerPage"></pagination>
+					</div>
+					</div>
+				</div>
+				
+
+					
+	</div>
+
+	<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content modal-content-height">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">ADD NEW TRACKS</h4>
+        </div>
+        <div class="modal-body modal-height">
+          <div class="row">
+          <label for="inputTitle" class="col-sm-2 control-label"><b>Title</b></label>
+               <div class="col-sm-6">
+                <input type="text" class="form-control"  ng-model="home.newTitle" placeholder="title">
+         </div>
+			  </div>
+				<div class="horizontal-space"></div>
+			  <div class="row">
+          <label for="inputGenre" class="col-sm-2 control-label"><b>Genre</b></label>
+               <div class="col-sm-6">
+                <input type="text" class="form-control"  ng-model="home.newGenre" placeholder="genre">
+         </div>
+			  </div>
+				<div class="horizontal-space"></div>
+				<div class="row">
+          <label for="inputRating" class="col-sm-2 control-label"><b>Rating</b></label>
+               <div class="col-sm-6">
+                <input type="number" class="form-control" ng-model="home.newRating" placeholder="Rating">
+         </div>
+			  </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="home.addNewTracks()" data-dismiss="modal">add</button>
+          <button type="button" class="btn btn-failure" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+	</div>
