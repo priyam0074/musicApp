@@ -1,0 +1,180 @@
+.mainPage {
+    height: 85vh;
+    
+    background-size: cover;
+    background-image: url(http://wallpapercave.com/wp/XHKGKZk.jpg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-size: contain;
+}
+
+.button-fn {
+border-radius: 3px; 
+padding:20px 60px;  
+margin:0 20px; 
+transition: all 0.5s; 
+cursor:pointer;
+ background-color:transparent; 
+ color: #FFFFFF;
+text-align: center;
+font-size: 28px;
+background-color: transparent;
+border: 1px solid darkgray;
+order: 1;
+
+/*effects*/
+/*// box-shadow:300px 0 0 0 rgba(0,0,0,0.5) inset;*/
+}
+
+
+.button-fn .content {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.button-fn:hover .content {
+ padding-right: 25px;
+ 
+}
+ .button-fn .content:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+ .button-fn:hover .content:after{ 
+    opacity: 1;
+    right: 0;
+    
+    }
+ .button-fn:hover{
+     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+ }
+ .body-content {
+    display: flex;
+    height: 72vh;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    flex-grow: 1;
+    margin-top: 1%;
+    margin-bottom: 1%;
+ }
+ .body-content div {
+    width: 64%;
+    text-align: justify;
+ }
+ .landing-elements {
+    display: flex;
+    height: 50vh; 
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    /* flex-grow: 1; */
+    margin-top: 1%;
+    margin-left: 17%;
+    margin-bottom: 1%;
+ }
+ 
+ .landing-elements > figure  {
+     width: 18%;
+    margin-right: 26px;
+    background-image: url(https://c.saavncdn.com/221/Bahubali-The-Conclusion-Hindi-2017-80x80.jpg);
+    height: 74%;
+    background-size: cover;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+ }
+ /*.landing-elements figure > audio {
+    width:210px;
+    position: absolute;
+    top: 100%;
+ }*/
+ .landing-elements figure > .play-Button {
+     border-radius: 50%;
+     border:2px solid #333333;
+     opacity:0;
+     width:62%;
+     height:74%;
+     display:flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+ }
+ .landing-elements figure > .play-Button:hover {
+     opacity:1;
+ }
+ /*}.landing-elements figure > .play-Button > span {
+     background-color: silver;
+     width:10%;
+     height:20%;
+ }*/
+
+ .music-player {
+     display:flex;
+     flex-direction: column;
+     justify-content:center;
+     align-items: center;
+     height:50%;
+ }
+ .music-player .spinner-wrap {
+     display:flex;
+     flex-direction: row;
+     justify-content:flex-start;
+     align-items: flex-start;
+     height:100px;
+     width:200px;
+     border-radius: 50%;
+     background: url(https://raw.githubusercontent.com/DevTips/Animated-Music-Player/master/assets/img/spinner-outer.png) center center no-repeat #32302e;
+ }
+ .playing {
+      animation: pulse 5s linear infinite;
+ }
+ .playing .spinner-outer img:first-child{
+     animation: spin-cw 5s linear infinite;
+ }
+ .music-player .spinner-wrap .spinner-outer {
+     width:200px;
+     height:100px;
+     border-radius: 50%;
+     position:relative;
+     /*background: url(https://raw.githubusercontent.com/DevTips/Animated-Music-Player/master/assets/img/play-sprite.png) center center no-repeat #32302e;*/
+ }
+
+ .music-player .spinner-wrap .spinner-outer .spinner-center{
+     width:200px;
+     height:100px;
+     border-radius: 50%;
+     position: absolute;
+     top: 13%;
+     left: 14%;
+ }
+ 
+ .music-player .spinner-wrap .spinner-outer .play-spirite {
+     border-radius: 50%;
+     position: absolute;
+     top: 16%;
+     left: 35%;
+     width: 70px;
+     height: 66px;
+     background: url(https://raw.githubusercontent.com/DevTips/Animated-Music-Player/master/assets/img/play-sprite.png) 0px 0px no-repeat;
+ }
+ 
+ @keyframes spin-cw {
+    from {transform: rotate(0deg)}
+    to {transform: rotate(360deg)}
+}
+
+@keyframes pulse {
+    from {transform: scale(1.8)}
+    to {transform: scale(1)}
+}

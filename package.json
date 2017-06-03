@@ -16,6 +16,7 @@
     "browser-sync": "^2.9.11",
     "browserify": "^12.0.0",
     "gulp": "^3.9.0",
+    "gulp-audiosprite": "^1.0.5",
     "gulp-concat": "^2.6.0",
     "gulp-environments": "^0.1.1",
     "gulp-inject": "^4.2.0",
@@ -29,11 +30,12 @@
   },
   "dependencies": {
     "angular": "^1.6.2",
-    "angular-bootstrap": "*",
-    "angular-resource": "*",
     "angular-animate": "^1.4.7",
     "angular-aria": "^1.4.7",
+    "angular-bootstrap": "*",
     "angular-material": "^0.11.4",
-    "angular-ui-router": "^0.4.2"
+    "angular-resource": "*",
+    "angular-ui-router": "^0.4.2",
+    "gulp-fluent-ffmpeg": "^1.0.2"
   }
 }

@@ -34,7 +34,28 @@ gulp.task('browserify', function() {
         .bundle()
         .pipe(source('main.js'))
         .pipe(gulp.dest('./public/'));
-})
+});
+
+gulp.task('audiosprite', function() {
+  gulp.src('./src/app/audio/*.mp3')
+    .pipe(audiosprite({
+      format: 'howler'
+    }))
+    .pipe(gulp.dest('build/sounds'));
+});
+
+gulp.task('audio', function () {
+  // transcode ogg files to mp3
+  return gulp.src('./src/app/audio/*.ogg')
+    .pipe(ffmpeg('mp3', function (cmd) {
+      return cmd
+        .audioBitrate('128k')
+        .audioChannels(2)
+        .audioCodec('libmp3lame')
+    }))
+    .pipe(gulp.dest('dest/audio'));
+});
+
 
 gulp.task('copy', ['browserify','scss'], function() {
     gulp.src(['./src/**/*.html','./src/**/*.css'])

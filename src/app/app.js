@@ -10,8 +10,9 @@ require('./services/musicGenreService.js');
 require('./filters/track-listFilter.js');
 require('./directives/ratingDirective.js');
 require('./directives/loading.js');
+require('./components/mainPage/mainPage.js');
 
-var app = angular.module('myApp', ['ui.bootstrap','ui.router','ngResource','ngMaterial','myApp.home','myApp.about']);
+var app = angular.module('myApp', ['ui.bootstrap','ui.router','ngResource','ngMaterial','myApp.home','myApp.about','myApp.mainPage']);
 
 app.config(['$stateProvider','$locationProvider','$httpProvider','$urlRouterProvider','$resourceProvider','$qProvider',
 function($stateProvider,$locationProvider,$httpProvider, $urlRouterProvider, $resourceProvider,$qProvider) {
@@ -51,6 +52,17 @@ function($stateProvider,$locationProvider,$httpProvider, $urlRouterProvider, $re
 				templateUrl:"app/components/about/about.html"
 			},
 			"header@about":{
+				templateUrl:"app/shared/header/header.html"
+			}
+		}
+	})
+	.state('mainPage', {
+		url:"/mainPage",
+		views: {
+			"" : {
+				templateUrl:"app/components/mainPage/mainPage.html"
+			},
+			"header@mainPage":{
 				templateUrl:"app/shared/header/header.html"
 			}
 		}

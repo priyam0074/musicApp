@@ -65253,8 +65253,9 @@ require('./services/musicGenreService.js');
 require('./filters/track-listFilter.js');
 require('./directives/ratingDirective.js');
 require('./directives/loading.js');
+require('./components/mainPage/mainPage.js');
 
-var app = angular.module('myApp', ['ui.bootstrap','ui.router','ngResource','ngMaterial','myApp.home','myApp.about']);
+var app = angular.module('myApp', ['ui.bootstrap','ui.router','ngResource','ngMaterial','myApp.home','myApp.about','myApp.mainPage']);
 
 app.config(['$stateProvider','$locationProvider','$httpProvider','$urlRouterProvider','$resourceProvider','$qProvider',
 function($stateProvider,$locationProvider,$httpProvider, $urlRouterProvider, $resourceProvider,$qProvider) {
@@ -65297,6 +65298,17 @@ function($stateProvider,$locationProvider,$httpProvider, $urlRouterProvider, $re
 				templateUrl:"app/shared/header/header.html"
 			}
 		}
+	})
+	.state('mainPage', {
+		url:"/mainPage",
+		views: {
+			"" : {
+				templateUrl:"app/components/mainPage/mainPage.html"
+			},
+			"header@mainPage":{
+				templateUrl:"app/shared/header/header.html"
+			}
+		}
 	});
 }]);
 app.directive('loading',['$http', function ($http)
@@ -65323,7 +65335,7 @@ app.directive('loading',['$http', function ($http)
         };
 
     }]);
-},{"./components/about/about.js":11,"./components/home/home.js":12,"./directives/loading.js":13,"./directives/ratingDirective.js":14,"./filters/track-listFilter.js":15,"./services/musicGenreService.js":16,"./services/musictrackservice.js":17,"angular":9,"angular-animate":2,"angular-aria":4,"angular-material":6,"angular-ui-router":7}],11:[function(require,module,exports){
+},{"./components/about/about.js":11,"./components/home/home.js":12,"./components/mainPage/mainPage.js":13,"./directives/loading.js":14,"./directives/ratingDirective.js":15,"./filters/track-listFilter.js":16,"./services/musicGenreService.js":17,"./services/musictrackservice.js":18,"angular":9,"angular-animate":2,"angular-aria":4,"angular-material":6,"angular-ui-router":7}],11:[function(require,module,exports){
 angular.module('myApp.about', [])
 .controller('aboutCtrl',['musicGenreService',function(musicGenreService){
 	var ctrl = this;
@@ -65538,9 +65550,61 @@ ctrl.editable = function(listofmusictracks) {
 	
 }]);
 },{}],13:[function(require,module,exports){
+angular.module('myApp.mainPage', []).
+directive('audioPlay',[function() {
+    return {
+          restrict : 'AE',
+          transclude: true,
+          template: '<div class="music-player">' +
+        
+                '<div class="spinner-wrap">' +
+                    '<div class="spinner-outer">' +
+                       ' <img src="https://raw.githubusercontent.com/DevTips/Animated-Music-Player/master/assets/img/spinner-outer.png"width="200" height="100"></img>'
+                    +
+                    '<div class="spinner-center">' +
+                        '<img src="https://raw.githubusercontent.com/DevTips/Animated-Music-Player/master/assets/img/spinner-center.png" width="144" height="76"></img>' +
+                    '</div>'+
+                    '<div class="play-spirite">'+
+                        
+                    '</div>' +
+                    '</div>' +
+                    '</div>' +
+            '<audio  loop="loop" data-bpm="86">'+
+                '<source src="https://raw.githubusercontent.com/DevTips/Animated-Music-Player/master/assets/songs/jamsauce.mp3"type="audio/mp3">' +
+                '<source src="https://raw.githubusercontent.com/DevTips/Animated-Music-Player/master/assets/songs/jamsauce.ogg" type="audio/ogg">' +
+           '</audio>' +
+            
+        '</div>',
+        scope: false,
+        link: function(scope, element, attributes) {
+             $('.spinner-wrap').click(function(){
+        var audio = $(this).siblings('audio')[0];
+        var self = $(this);
+        if(audio.paused === false) {
+            audio.pause();
+            //audio.currentTime = 0;
+            self.removeClass('playing');
+             $('.spinner-wrap .spinner-outer .play-spirite').css("background-position", "0px 0px");
+        }
+        else {
+          var d =   audio.play();
 
-
+          d.then(function(resolve) {
+             self.addClass('playing');
+             $('.spinner-wrap .spinner-outer .play-spirite').css("background-position", "0px -70px");
+             
+          });
+            
+        }
+        
+         })
+        }
+    }
+}] )
 },{}],14:[function(require,module,exports){
+
+
+},{}],15:[function(require,module,exports){
 angular.module('myApp.home')
 .directive('starRating',[function() {
       return {
@@ -65581,7 +65645,7 @@ angular.module('myApp.home')
           }
       }
 }])
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 angular.module('myApp.home')
 .filter('combineGenre', function(){
     return function(input) {
@@ -65601,7 +65665,7 @@ angular.module('myApp.home')
     return str;
     }
 })
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 angular.module('myApp.about')
 .service('musicGenreService',['$http','$q', function($http, $q){
 var url = "http://104.197.128.152:8000/v1/genres";
@@ -65643,7 +65707,7 @@ var url = "http://104.197.128.152:8000/v1/genres";
         }
 }]);
        
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 angular.module('myApp.home')
 .factory('musictrackService',['$http','$resource','$q', function($http, $resource, $q){
        var self = this;
